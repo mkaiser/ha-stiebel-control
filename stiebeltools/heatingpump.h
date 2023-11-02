@@ -158,7 +158,7 @@ void readSignal(const CanMember * member, const ElsterIndex * ei) {
     sprintf(logmsg, "READ \"%s\" (0x%04x) FROM %s (0x%02x {0x%02x, 0x%02x}): %02x, %02x, %02x, %02x, %02x, %02x, %02x", ei->Name, ei->Index, member->Name, member->CanId, member->ReadId[0], member->ReadId[1], data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
     ESP_LOGI("readSignal()", "%s", logmsg);
     
-    id(my_mcp2515).send_data(CanMembers[cm_espclient].CanId, use_extended_id, data);
+    id(my_can_controller).send_data(CanMembers[cm_espclient].CanId, use_extended_id, data);
     
     return;
 }
@@ -196,7 +196,7 @@ void writeSignal(const CanMember * member, const ElsterIndex * ei, const char * 
     sprintf(logmsg, "WRITE \"%s\" (0x%04x): \"%d\" TO: %s (0x%02x {0x%02x, 0x%02x}): %02x, %02x, %02x, %02x, %02x, %02x, %02x", ei->Name, ei->Index, writeValue, member->Name, member->CanId, member->ReadId[0], member->ReadId[1], data[0], data[1], data[2], data[3], data[4], data[5], data[6]);
     ESP_LOGI("writeSignal()", "%s", logmsg);
     
-    id(my_mcp2515).send_data(CanMembers[cm_espclient].CanId, use_extended_id, data);
+    id(my_can_controller).send_data(CanMembers[cm_espclient].CanId, use_extended_id, data);
     
     return;
 }
